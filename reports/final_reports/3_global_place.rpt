@@ -1,0 +1,265 @@
+
+==========================================================================
+global place report_tns
+--------------------------------------------------------------------------
+tns max 0.00
+
+==========================================================================
+global place report_wns
+--------------------------------------------------------------------------
+wns max 0.00
+
+==========================================================================
+global place report_worst_slack
+--------------------------------------------------------------------------
+worst slack max 16.98
+
+==========================================================================
+global place report_clock_min_period
+--------------------------------------------------------------------------
+core_clk period_min = 3.85 fmax = 259.83
+
+==========================================================================
+global place report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: usb_core.recv.sm.state[3]$_DFF_PN0_
+            (rising edge-triggered flip-flop clocked by core_clk)
+Endpoint: usb_core.recv.sm.crc5.r[1]$_DFFE_PN1N_
+          (removal check against rising-edge clock core_clk)
+Path Group: asynchronous
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ usb_core.recv.sm.state[3]$_DFF_PN0_/CLK (sky130_fd_sc_hd__dfrtp_1)
+    19    0.06    0.52    0.64    0.64 ^ usb_core.recv.sm.state[3]$_DFF_PN0_/Q (sky130_fd_sc_hd__dfrtp_1)
+                                         usb_core.recv.sm.state[3] (net)
+                  0.52    0.00    0.65 ^ _411_/A (sky130_fd_sc_hd__and2_1)
+     1    0.00    0.07    0.21    0.86 ^ _411_/X (sky130_fd_sc_hd__and2_1)
+                                         usb_core.recv.sm.crc16.rst_n (net)
+                  0.07    0.00    0.86 ^ place17/A (sky130_fd_sc_hd__buf_4)
+    21    0.10    0.27    0.28    1.14 ^ place17/X (sky130_fd_sc_hd__buf_4)
+                                         net16 (net)
+                  0.27    0.00    1.14 ^ usb_core.recv.sm.crc5.r[1]$_DFFE_PN1N_/SET_B (sky130_fd_sc_hd__dfstp_2)
+                                  1.14   data arrival time
+
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ usb_core.recv.sm.crc5.r[1]$_DFFE_PN1N_/CLK (sky130_fd_sc_hd__dfstp_2)
+                          0.12    0.12   library removal time
+                                  0.12   data required time
+-----------------------------------------------------------------------------
+                                  0.12   data required time
+                                 -1.14   data arrival time
+-----------------------------------------------------------------------------
+                                  1.02   slack (MET)
+
+
+Startpoint: usb_core.recv.d_filter.r[0]$_DFF_P_
+            (rising edge-triggered flip-flop clocked by core_clk)
+Endpoint: usb_core.recv.d_filter.r[1]$_DFF_P_
+          (rising edge-triggered flip-flop clocked by core_clk)
+Path Group: core_clk
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ usb_core.recv.d_filter.r[0]$_DFF_P_/CLK (sky130_fd_sc_hd__dfxtp_1)
+     2    0.00    0.06    0.30    0.30 ^ usb_core.recv.d_filter.r[0]$_DFF_P_/Q (sky130_fd_sc_hd__dfxtp_1)
+                                         usb_core.recv.d_filter.r[0] (net)
+                  0.06    0.00    0.30 ^ usb_core.recv.d_filter.r[1]$_DFF_P_/D (sky130_fd_sc_hd__dfxtp_1)
+                                  0.30   data arrival time
+
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ usb_core.recv.d_filter.r[1]$_DFF_P_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                         -0.04   -0.04   library hold time
+                                 -0.04   data required time
+-----------------------------------------------------------------------------
+                                 -0.04   data required time
+                                 -0.30   data arrival time
+-----------------------------------------------------------------------------
+                                  0.34   slack (MET)
+
+
+
+==========================================================================
+global place report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: rst_n (input port clocked by core_clk)
+Endpoint: usb_core.tx.tx_crc.r[0]$_DFFE_PN1P_
+          (recovery check against rising-edge clock core_clk)
+Path Group: asynchronous
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          2.00    2.00 ^ input external delay
+     1    0.01    0.00    0.00    2.00 ^ rst_n (in)
+                                         rst_n (net)
+                  0.00    0.00    2.00 ^ input2/A (sky130_fd_sc_hd__buf_2)
+    27    0.14    0.67    0.52    2.52 ^ input2/X (sky130_fd_sc_hd__buf_2)
+                                         net1 (net)
+                  0.67    0.01    2.53 ^ place18/A (sky130_fd_sc_hd__buf_4)
+    39    0.19    0.51    0.57    3.10 ^ place18/X (sky130_fd_sc_hd__buf_4)
+                                         net17 (net)
+                  0.51    0.00    3.11 ^ _412_/A (sky130_fd_sc_hd__and2_1)
+    16    0.07    0.71    0.67    3.78 ^ _412_/X (sky130_fd_sc_hd__and2_1)
+                                         usb_core.tx.tx_crc.rst_n (net)
+                  0.71    0.00    3.78 ^ usb_core.tx.tx_crc.r[0]$_DFFE_PN1P_/SET_B (sky130_fd_sc_hd__dfstp_2)
+                                  3.78   data arrival time
+
+                  0.00   20.83   20.83   clock core_clk (rise edge)
+                          0.00   20.83   clock network delay (ideal)
+                          0.00   20.83   clock reconvergence pessimism
+                                 20.83 ^ usb_core.tx.tx_crc.r[0]$_DFFE_PN1P_/CLK (sky130_fd_sc_hd__dfstp_2)
+                          0.08   20.91   library recovery time
+                                 20.91   data required time
+-----------------------------------------------------------------------------
+                                 20.91   data required time
+                                 -3.78   data arrival time
+-----------------------------------------------------------------------------
+                                 17.13   slack (MET)
+
+
+Startpoint: rst_n (input port clocked by core_clk)
+Endpoint: usb_core.tx_data[0]$_DFFE_PP_
+          (rising edge-triggered flip-flop clocked by core_clk)
+Path Group: core_clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          2.00    2.00 ^ input external delay
+     1    0.01    0.00    0.00    2.00 ^ rst_n (in)
+                                         rst_n (net)
+                  0.00    0.00    2.00 ^ input2/A (sky130_fd_sc_hd__buf_2)
+    27    0.14    0.67    0.52    2.52 ^ input2/X (sky130_fd_sc_hd__buf_2)
+                                         net1 (net)
+                  0.67    0.01    2.53 ^ place18/A (sky130_fd_sc_hd__buf_4)
+    39    0.19    0.51    0.57    3.10 ^ place18/X (sky130_fd_sc_hd__buf_4)
+                                         net17 (net)
+                  0.51    0.00    3.11 ^ _424_/D_N (sky130_fd_sc_hd__nor4bb_1)
+     2    0.01    0.39    0.39    3.50 ^ _424_/Y (sky130_fd_sc_hd__nor4bb_1)
+                                         _016_ (net)
+                  0.39    0.00    3.50 ^ usb_core.tx_data[0]$_DFFE_PP_/DE (sky130_fd_sc_hd__edfxtp_1)
+                                  3.50   data arrival time
+
+                  0.00   20.83   20.83   clock core_clk (rise edge)
+                          0.00   20.83   clock network delay (ideal)
+                          0.00   20.83   clock reconvergence pessimism
+                                 20.83 ^ usb_core.tx_data[0]$_DFFE_PP_/CLK (sky130_fd_sc_hd__edfxtp_1)
+                         -0.35   20.48   library setup time
+                                 20.48   data required time
+-----------------------------------------------------------------------------
+                                 20.48   data required time
+                                 -3.50   data arrival time
+-----------------------------------------------------------------------------
+                                 16.98   slack (MET)
+
+
+
+==========================================================================
+global place report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: rst_n (input port clocked by core_clk)
+Endpoint: usb_core.tx.tx_crc.r[0]$_DFFE_PN1P_
+          (recovery check against rising-edge clock core_clk)
+Path Group: asynchronous
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          2.00    2.00 ^ input external delay
+     1    0.01    0.00    0.00    2.00 ^ rst_n (in)
+                                         rst_n (net)
+                  0.00    0.00    2.00 ^ input2/A (sky130_fd_sc_hd__buf_2)
+    27    0.14    0.67    0.52    2.52 ^ input2/X (sky130_fd_sc_hd__buf_2)
+                                         net1 (net)
+                  0.67    0.01    2.53 ^ place18/A (sky130_fd_sc_hd__buf_4)
+    39    0.19    0.51    0.57    3.10 ^ place18/X (sky130_fd_sc_hd__buf_4)
+                                         net17 (net)
+                  0.51    0.00    3.11 ^ _412_/A (sky130_fd_sc_hd__and2_1)
+    16    0.07    0.71    0.67    3.78 ^ _412_/X (sky130_fd_sc_hd__and2_1)
+                                         usb_core.tx.tx_crc.rst_n (net)
+                  0.71    0.00    3.78 ^ usb_core.tx.tx_crc.r[0]$_DFFE_PN1P_/SET_B (sky130_fd_sc_hd__dfstp_2)
+                                  3.78   data arrival time
+
+                  0.00   20.83   20.83   clock core_clk (rise edge)
+                          0.00   20.83   clock network delay (ideal)
+                          0.00   20.83   clock reconvergence pessimism
+                                 20.83 ^ usb_core.tx.tx_crc.r[0]$_DFFE_PN1P_/CLK (sky130_fd_sc_hd__dfstp_2)
+                          0.08   20.91   library recovery time
+                                 20.91   data required time
+-----------------------------------------------------------------------------
+                                 20.91   data required time
+                                 -3.78   data arrival time
+-----------------------------------------------------------------------------
+                                 17.13   slack (MET)
+
+
+Startpoint: rst_n (input port clocked by core_clk)
+Endpoint: usb_core.tx_data[0]$_DFFE_PP_
+          (rising edge-triggered flip-flop clocked by core_clk)
+Path Group: core_clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          2.00    2.00 ^ input external delay
+     1    0.01    0.00    0.00    2.00 ^ rst_n (in)
+                                         rst_n (net)
+                  0.00    0.00    2.00 ^ input2/A (sky130_fd_sc_hd__buf_2)
+    27    0.14    0.67    0.52    2.52 ^ input2/X (sky130_fd_sc_hd__buf_2)
+                                         net1 (net)
+                  0.67    0.01    2.53 ^ place18/A (sky130_fd_sc_hd__buf_4)
+    39    0.19    0.51    0.57    3.10 ^ place18/X (sky130_fd_sc_hd__buf_4)
+                                         net17 (net)
+                  0.51    0.00    3.11 ^ _424_/D_N (sky130_fd_sc_hd__nor4bb_1)
+     2    0.01    0.39    0.39    3.50 ^ _424_/Y (sky130_fd_sc_hd__nor4bb_1)
+                                         _016_ (net)
+                  0.39    0.00    3.50 ^ usb_core.tx_data[0]$_DFFE_PP_/DE (sky130_fd_sc_hd__edfxtp_1)
+                                  3.50   data arrival time
+
+                  0.00   20.83   20.83   clock core_clk (rise edge)
+                          0.00   20.83   clock network delay (ideal)
+                          0.00   20.83   clock reconvergence pessimism
+                                 20.83 ^ usb_core.tx_data[0]$_DFFE_PP_/CLK (sky130_fd_sc_hd__edfxtp_1)
+                         -0.35   20.48   library setup time
+                                 20.48   data required time
+-----------------------------------------------------------------------------
+                                 20.48   data required time
+                                 -3.50   data arrival time
+-----------------------------------------------------------------------------
+                                 16.98   slack (MET)
+
+
+
+==========================================================================
+global place report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             3.52e-04   2.69e-05   1.55e-09   3.79e-04  81.0%
+Combinational          4.17e-05   4.71e-05   1.01e-09   8.88e-05  19.0%
+Clock                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  3.94e-04   7.40e-05   2.56e-09   4.68e-04 100.0%
+                          84.2%      15.8%       0.0%
